@@ -1,0 +1,19 @@
+# Protect the .env
+<Files .env>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Disallow indexing / listing files by visitor
+Options -Indexes
+
+# Remove .PHP from URL
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+
+# TODO: Adjust the commented out lines for production use
+ErrorDocument 403 http://localhost/kylerossbeasley.com/403
+ErrorDocument 404 http://localhost/kylerossbeasley.com/404
+# ErrorDocument 403 https://www.kylerossbeasley.com/403
+# ErrorDocument 404 https://www.kylerossbeasley.com/404
