@@ -11,10 +11,13 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php" : "^8.2"
+        "php" : "^8.2",
+        "vlucas/phpdotenv": "^5.6@dev"
     },
     "autoload": {
-        "files" : [],
+        "files" : [
+            "app/config.php"
+        ],
         "psr-4": {
             "App\\" : "app/"
         }
