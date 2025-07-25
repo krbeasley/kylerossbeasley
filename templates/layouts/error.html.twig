@@ -3,21 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Kyle Ross Beasley{% endblock %}</title>
-    <link rel="stylesheet" href="/public/styles/output.css" />
+    <link rel="stylesheet" href="/public/styles/error.css">
 </head>
 <body class="bg-background">
-<header class="mx-auto w-11/12 h-30 max-w-[120ch] flex items-center justify-between gap-2 border-b-1
-    border-b-neutral-800 px-8">
-    <a href="/" class="text-text text-2xl">Kyle Beasley</a>
+<header class="">
+    <a href="/" class="title-logo">Kyle Beasley</a>
 
-    <nav class="flex items-center justify-end gap-10">
-        <a href="/about" class="text-primary cursor-pointer hover:text-text transition duration-100
-            text-sm">Home</a>
-        <a href="https://www.github.com/krbeasley" class="text-primary cursor-pointer hover:text-text transition duration-100
-            text-sm">GitHub</a>
+    <nav class="">
+        <a href="/" class="">Home</a>
+        <a href="https://www.github.com/krbeasley" class="">GitHub</a>
     </nav>
 </header>
-<main class="w-full">
+<main class="">
     {% block main %}{% endblock %}
 </main>
 </body>
