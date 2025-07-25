@@ -1,19 +1,59 @@
-# Protect the .env
-<Files .env>
-Order Allow,Deny
-Deny from all
-</Files>
+#-----------------------------------------------------------------------------------------------------------------------
+# kylerossbeasley main .htaccess file.
+#
+# Assumes the site lives at /var/www/kylerossbeasley during the dev work and lives in side the PUBLIC_HTML folder on
+# Hostinger's shared hosting servers.
+#-----------------------------------------------------------------------------------------------------------------------
 
-# Disallow indexing / listing files by visitor
+# Pretty URLs
+RewriteEngine On
+
+# If request matchest an actual PHP file, serve it
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+########################################################################################################################
+# SECURITY AND ACCESS CONTROL
+
+# Disallow indexing of directories
 Options -Indexes
 
-# Remove .PHP from URL
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+# Disallow access to .env
+<Files .env>
+    Order deny,allow
+    Deny from all
+</Files>
 
-# TODO: Adjust the commented out lines for production use
-ErrorDocument 403 http://localhost/kylerossbeasley.com/403
-ErrorDocument 404 http://localhost/kylerossbeasley.com/404
-# ErrorDocument 403 https://www.kylerossbeasley.com/403
-# ErrorDocument 404 https://www.kylerossbeasley.com/404
+# Disallow direct access to the twig files
+<Files *.twig>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Disallow direct access to the .git files
+<Files .gitignore>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Disallow direct access to the composer files
+<Files composer.*>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# 404 all requests made to the these directories
+RedirectMatch 404 ^/(node_modules|\.git|config|templates|vendor)
+
+########################################################################################################################
+# CUSTOM ERROR PAGES
+
+# 404 Page
+ErrorDocument 404 /404.php
+
+# 403 Page
+ErrorDocument 403 /403.php

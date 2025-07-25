@@ -1,6 +1,10 @@
 {
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i public/styles/input.css -o public/styles/output.css --watch",
+    "build": "npx @tailwindcss/cli -i public/styles/input.css -o public/styles/output.css"
+  },
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.4",
-    "tailwindcss": "^4.1.4"
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
   }
 }
